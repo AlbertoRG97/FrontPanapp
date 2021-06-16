@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+          [text]="buttonText"
+          [icon]="buttonIcon"
+          defaultHref="home">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title align="center">  COMENCEMOS  </ion-card-title>
+      <br>
+    </ion-card-header>
+    <ion-label position="floation">Datos de usuario</ion-label>
+    <br>
+    <br>
+    <form #form="ngForm" (ngSubmit)="register()" method="post">
+    <ion-item>
+      <ion-label position="stacked" placeholder="name" color="secondary">Tu nombre</ion-label>
+      <ion-input [(ngModel)]="data.name" name="name"></ion-input> 
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" placeholder="surname"  color="secondary">Tu apellido</ion-label>
+      <ion-input [(ngModel)]="data.surname" name="surname"></ion-input> 
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" placeholder="username" color="secondary">Tu nombre de usuario</ion-label>
+      <ion-input [(ngModel)]="data.username" name="username"></ion-input> 
+    </ion-item>
+    <ion-item >
+      <ion-label position="stacked" placeholder="country" color="secondary">Tu pais</ion-label>
+      <ion-select value="Spain" okText="Okay" [(ngModel)]="data.country" name="country" cancelText="Dismiss">
+        <ion-select-option *ngFor="let item of countries"  value="{{ item }}">{{ item }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" placeholder="email" color="secondary">Tu correo electrónico</ion-label>
+      <ion-input type="email" [(ngModel)]="data.email" name="email"></ion-input> 
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" placeholder="password" color="secondary">Tu contraseña</ion-label>
+      <ion-input type="{{tipo}}" [(ngModel)]="data.password" name="password"></ion-input>
+      <ion-icon slot="end" (click)="verPass()" *ngIf="tipo == 'password'" name="eye-outline"></ion-icon>
+      <ion-icon slot="end" (click)="noVerPass()" *ngIf="tipo == 'text'" name="eye-off-outline"></ion-icon> 
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" placeholder="c_password" color="secondary">Repite tu contraseña</ion-label>
+      <ion-input type="{{tipo}}" [(ngModel)]="data.c_password" name="c_password"></ion-input> 
+      <ion-icon slot="end" (click)="verPass()" *ngIf="tipo == 'password'" name="eye-outline"></ion-icon>
+      <ion-icon slot="end" (click)="noVerPass()" *ngIf="tipo == 'text'" name="eye-off-outline"></ion-icon>
+    </ion-item>
+    <br>
+    <ion-button size="default" type="submit" expand="block">Registrarme</ion-button>
+    <br>
+    </form>
+  </ion-card>
+</ion-content>

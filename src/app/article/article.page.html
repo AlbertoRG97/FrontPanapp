@@ -1,0 +1,18 @@
+<app-header titulo="Artículos"></app-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-icon slot="start" name="reader-outline"></ion-icon>
+        <ion-card-title>{{ articles.name }}</ion-card-title> 
+      </ion-item>
+      <ion-item>
+        <ion-card-subtitle>Categoría: {{ articles.category }}</ion-card-subtitle>
+      </ion-item>
+    </ion-card-header>
+    <ion-item>
+      <ion-card-content>{{ articles.text }}</ion-card-content>
+    </ion-item>
+  </ion-card>
+</ion-content>

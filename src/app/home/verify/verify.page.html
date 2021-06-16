@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>verify</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Verificando cuenta</ion-card-title>
+      <br>
+      <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    </ion-card-header>
+    <ion-card-content>
+      A continuacion introduce el número de verificación que hemos enviado a tu correo electrónico
+    </ion-card-content>
+    <ion-item>
+      <ion-label position="stacked" placeholder="Code" color="secondary">Código de verificación</ion-label>
+      <ion-input [(ngModel)]="code"></ion-input> 
+    </ion-item>
+    <br>
+    <ion-button size="default" expand="block" (click)="verificar()">Confirmar</ion-button>
+    <br>
+  </ion-card>
+</ion-content>

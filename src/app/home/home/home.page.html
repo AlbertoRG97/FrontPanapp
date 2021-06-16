@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>BIENVENIDO A PAN APP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title align="center" color="secondary">  LOGIN  </ion-card-title>
+      <br>
+    </ion-card-header>
+    <form #form="ngForm" (ngSubmit)="login()" method="post">
+    <ion-item>
+      <ion-label position="stacked" placeholder="email" color="secondary">Tu correo electrónico</ion-label>
+      <ion-input [(ngModel)]="data.email" name="email"></ion-input> 
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" placeholder="password" color="secondary">Tu contraseña</ion-label>
+      <ion-input [(ngModel)]="data.password" type="{{tipo}}" name="password"></ion-input>
+      <ion-icon slot="end" (click)="verPass()" *ngIf="tipo == 'password'" name="eye-outline"></ion-icon>
+      <ion-icon slot="end" (click)="noVerPass()" *ngIf="tipo == 'text'" name="eye-off-outline"></ion-icon>
+    </ion-item>
+    <br>
+    <ion-button size="default" expand="block" type="submit">Iniciar sesion</ion-button>
+    </form>
+    <br>
+    <ion-button size="default" expand="block" (click)="goToRegister()">Registrarme</ion-button>
+    <br>
+    <br>
+    <ion-label>¿Has olvidado tu contraseña? Pulsa <a href="">aquí</a> para resaurarla</ion-label>
+  </ion-card>
+</ion-content>

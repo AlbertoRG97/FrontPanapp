@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="centrar" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Progreso de creación</ion-title>
+    <ion-progress-bar value="{{progress}}"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-img src="../../../assets/images/{{imagen}}.jpg"></ion-img>
+
+    <ion-card-header style="margin-top:20px">
+      <ion-card-title style="text-align:center">Nombre de la receta</ion-card-title>
+      <ion-input name="name" (ionChange)="setName($event)" placeholder="introduce aqui el nombre"></ion-input>
+      <ion-card-title style="text-align:center;margin-top:20px">Descripción de la receta</ion-card-title>
+      <ion-item >
+        <ion-textarea name="description" (ionChange)="setDescription($event)" placeholder="introduce aqui la descripción"></ion-textarea>
+      </ion-item>
+    </ion-card-header>
+      <ion-button expand="block" (click)="create()">Finalizar</ion-button>
+  </ion-card>
+</ion-content>

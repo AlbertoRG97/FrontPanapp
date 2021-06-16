@@ -1,0 +1,56 @@
+<app-header titulo="Editar harinas"></app-header>
+
+<ion-content>
+  <ion-card style="margin-top:20px">
+    <ion-card-header>
+      <ion-item>
+        <ion-card-title style="text-align:center;margin-left:40%">Harinas</ion-card-title>
+        <ion-icon slot="end" style="display:flex" (click)="displayInfo()" name="information-circle-outline"></ion-icon>
+      </ion-item>
+      <ion-card-subtitle style="text-align:center">Es hora de añadir las harinas que componen tu receta</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:200px">Harina blanca de trigo</ion-label>
+      <ion-input name='0' type="number" (ionChange)="totalGramos($event)" debounce="1000" placeholder="gramos"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:200px">Harina integral trigo</ion-label>
+      <ion-input type="number" name="1" (ionChange)="totalGramos($event)" debounce="1000" placeholder="gramos"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:200px">Harina blanca espelta</ion-label>
+      <ion-input type="number" name="2" (ionChange)="totalGramos($event)" debounce="1000" placeholder="gramos"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:200px">Harina integral espelta</ion-label>
+      <ion-input type="number" name="3" (ionChange)="totalGramos($event)" debounce="1000" placeholder="gramos"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:200px">Harina blanca centeno</ion-label>
+      <ion-input type="number" name="4" (ionChange)="totalGramos($event)" debounce="1000" placeholder="gramos"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:200px">Harina integral centeno</ion-label>
+      <ion-input type="number" name="5" (ionChange)="totalGramos($event)"  debounce="1000" placeholder="gramos"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:200px">Sémola de trigo</ion-label>
+      <ion-input type="number" name="6" (ionChange)="totalGramos($event)" debounce="1000" placeholder="gramos"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-activated" style="display:flex;justify-content:center">
+      <ion-label style="width:170px;font-size:20px;text-align:center">Total gramos: {{ grTotal }} gr</ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="next()" expand="block">Siguiente</ion-button>
+</ion-footer>

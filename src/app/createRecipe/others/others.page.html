@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="centrar" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Progreso de creación</ion-title>
+    <ion-progress-bar value="0.5"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="ion-activated" style="display:flex;justify-content:center">
+    <ion-label style="width:170px;font-size:20px;text-align:center">Total harina: {{ grTotal }} gr</ion-label>
+    <ion-icon slot="end" style="display:flex" (click)="displayInfo()" name="information-circle-outline"></ion-icon>
+  </ion-item>
+
+  <ion-card style="margin-top:10px">
+
+    <ion-card-header>
+      <ion-card-title style="text-align:center">Hidratación</ion-card-title>
+      <ion-card-subtitle style="text-align:center">¿Qué es de un pan sin hidratación?</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:150px">Agua</ion-label>
+      <ion-input name='agua' type="number" (ionChange)="calcularPorcentaje($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Hydration.agua}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:150px">Leche</ion-label>
+      <ion-input type="number" name="leche" (ionChange)="calcularPorcentaje($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Hydration.leche}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated" style="display:flex;justify-content:center">
+      <ion-label style="width:170px;font-size:20px;text-align:center">Total hidratación: {{ hrTotal }}%</ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card style="margin-top:10px">
+
+    <ion-card-header>
+      <ion-card-title style="text-align:center">Otros ingredientes</ion-card-title>
+      <ion-card-subtitle style="text-align:center">Habría que ponerle sal al menos... ¿No?</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Sal</ion-label>
+      <ion-input name='salt' type="number" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.salt}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Masa madre</ion-label>
+      <ion-input type="number" name="masa_madre" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.masa_madre}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Manteca</ion-label>
+      <ion-input type="number" name="manteca" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.manteca}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Aceite_oliva</ion-label>
+      <ion-input type="number" name="aceite_oliva" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.aceite_oliva}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Grasa</ion-label>
+      <ion-input type="number" name="grasa" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.grasa}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Semillas</ion-label>
+      <ion-input type="number" name="semillas" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.semillas}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Pure patata</ion-label>
+      <ion-input type="number" name="pure_patata" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.pure_patata}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Huevo</ion-label>
+      <ion-input type="number" name="huevo" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.huevo}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Levadura fresca</ion-label>
+      <ion-input type="number" name="levadura_fresca" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.levadura_fresca}}%</ion-label>
+    </ion-item>
+
+    <ion-item class="ion-activated">
+      <ion-label slot="start" style="width:140px">Levadura seca</ion-label>
+      <ion-input type="number" name="levadura_seca" (ionChange)="calcularPorcentajeO($event)" debounce="1000" placeholder="gramos"></ion-input>
+      <ion-label slot="end">{{Others.levadura_seca}}%</ion-label>
+    </ion-item>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="next()" expand="block">Siguiente</ion-button>
+</ion-footer>

@@ -1,0 +1,22 @@
+<app-header titulo="Nueva imagen"></app-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-card-title style="text-align:center">Seleccione una imagen para su receta</ion-card-title>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row style="height:100px" *ngFor="let item of items">
+          <ion-col *ngFor="let i of item" style="display:flex;justify-content:center">
+            <ion-thumbnail (click)="selectImage(i)" class="item-thumbnail" size="100">
+              <ion-img  src="../../../assets/images/{{i}}.jpg"></ion-img>
+            </ion-thumbnail>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
