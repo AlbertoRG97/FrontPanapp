@@ -198,6 +198,7 @@ export class OwnRecipePage implements OnInit {
     this.myComment['username'] = this.username
     this.myComment['comment'] = this.comment
     this.CommentsService.createComment(this.myComment)
+    this.comentConfirm()
   }
 
   editFlour(){
@@ -241,6 +242,22 @@ export class OwnRecipePage implements OnInit {
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
+  async comentConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Comentario creado',
+      subHeader: 'Refresca la pagina deslizando hacia abajo',
+      buttons: [
+        {
+          text: 'Ok',
+        }
+      ]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
 
   async editDesc() {
     const alert = await this.alertController.create({
@@ -271,7 +288,10 @@ export class OwnRecipePage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
 
-  editImage(){
-    this.NavController.navigateRoot('edit-image/'+this.id)
+  editImage($id){
+    if(this.id_user == $id){
+      this.NavController.navigateRoot('edit-image/'+this.id)
+    }
+    
   }
 }

@@ -9,6 +9,7 @@ import { NavController } from '@ionic/angular';
 export class HeaderComponent implements OnInit {
 
   @Input() titulo: string;
+  @Input() direccion: string;
 
   constructor(private NavController:NavController) { }
 

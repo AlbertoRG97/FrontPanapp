@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { LoginServiceService } from '../../services/login-service.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomePage implements OnInit {
   
   constructor(private navCtrl: NavController,
     private loginService: LoginServiceService,
-    private AlertController:AlertController) { } 
+    private AlertController:AlertController,
+    private UserService:UserService) { } 
 
   ngOnInit() {
   }
@@ -26,7 +28,10 @@ export class HomePage implements OnInit {
 
   login(){
     this.loginService.login(this.data).then(data => {
-      this.navegar(data)
+      this.UserService.getUserData().then(data => {
+        this.navegar(data)
+      })
+      
     });
   }
 
@@ -38,7 +43,10 @@ export class HomePage implements OnInit {
   }
 
   navegar($data){
-    if($data.success.admin === 1){
+    if($data.User.deleted === 1){
+      this.banned()
+    }
+    else if($data.success.admin === 1){
       this.navCtrl.navigateRoot('admin-articles')
     }
     else{
@@ -64,6 +72,22 @@ export class HomePage implements OnInit {
           handler: (alertData) => {
             this.loginService.resetPass(alertData.username)
           }
+        }
+      ]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
+  async banned() {
+    const alert = await this.AlertController.create({
+      header: 'Este usuario ha sido baneado',
+      buttons: [
+        {
+          text: 'Ok',
         }
       ]
     });
