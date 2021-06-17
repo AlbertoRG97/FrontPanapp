@@ -17,4 +17,7 @@ export class HeaderComponent implements OnInit {
   perfil(){
     this.NavController.navigateRoot('/profile');
   }
+  logout(){
+    this.NavController.navigateRoot('home')
+  }
 }

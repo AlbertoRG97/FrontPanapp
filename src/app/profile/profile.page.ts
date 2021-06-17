@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +12,8 @@ export class ProfilePage implements OnInit {
   userData = {}
 
   constructor(private UserService:UserService,
-    private AlertController:AlertController) { }
+    private AlertController:AlertController,
+    private NavController:NavController) { }
 
   ngOnInit() {
     this.UserService.getUserData().then(data => {
@@ -122,7 +123,7 @@ export class ProfilePage implements OnInit {
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
-  async editPass() {
+  async changePass() {
     const alert = await this.AlertController.create({
       header: 'Editar contraseña',
       subHeader: 'Nueva contraseña:',
@@ -149,6 +150,10 @@ export class ProfilePage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
+  }
+
+  logout(){
+    this.NavController.navigateRoot('home')
   }
 
 }

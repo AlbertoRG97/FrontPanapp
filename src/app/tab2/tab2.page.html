@@ -18,22 +18,22 @@
       <ion-select-option class="options" value="OrA">Orden alfabetico</ion-select-option>
     </ion-select>
   </ion-item>
-    <ion-card *ngFor="let recipe of recipes" style="margin-top:10px">
-      <ion-img (click)="viewRecipe(recipe.id)" src="../assets/images/{{recipe.image}}.jpg"></ion-img>
-      <ion-card-header (click)="viewRecipe(recipe.id)" style="margin-top:5px">
-        <ion-card-title>{{ recipe.name }}</ion-card-title>
-        <ion-card-subtitle style="margin-top:5px">{{ recipe.description }}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-item >
-        <ion-item>
-          <ion-icon name="chatbubbles-sharp"></ion-icon>
-          <ion-label>{{recipe.numero}}</ion-label>
-        </ion-item>
-        <ion-item slot="end">
-          <ion-icon (click)="reportRecipe(recipe.id)" name="thumbs-down"></ion-icon>
-        </ion-item>
+  <ion-card *ngFor="let recipe of recipes" style="margin-top:10px">
+    <ion-img (click)="viewRecipe(recipe.id)" src="../assets/images/{{recipe.image}}.jpg"></ion-img>
+    <ion-card-header (click)="viewRecipe(recipe.id)" style="margin-top:5px">
+      <ion-card-title>{{ recipe.name }}</ion-card-title>
+      <ion-card-subtitle style="margin-top:5px">{{ recipe.description }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-item >
+      <ion-item>
+        <ion-icon name="chatbubbles-sharp"></ion-icon>
+        <ion-label>{{recipe.numero}}</ion-label>
       </ion-item>
-        
-    </ion-card>
+      <ion-item slot="end">
+        <ion-icon (click)="reportRecipe(recipe.id)" name="thumbs-down"></ion-icon>
+      </ion-item>
+    </ion-item>
+      
+  </ion-card>
     
 </ion-content>

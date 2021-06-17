@@ -27,11 +27,41 @@ export class UserService {
       });
   }
 
+  getUsers(){
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl + '/users',
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
+      })
+      .subscribe(data => {
+      resolve(data);
+      }, err => {
+        console.log(err);
+      });
+      });
+  }
+
+  deleteUser($id){
+    return new Promise(resolve => {
+      this.http.delete(this.apiUrl + '/users/' + $id,
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
+      })
+      .subscribe(data => {
+      resolve(data);
+      // this.navCtrl.navigateRoot('/tabs');
+      }, err => {
+        console.log(err);
+      });
+      });
+  }
+
   updateUserName($name){
     return new Promise(resolve => {
       this.http.put(this.apiUrl + '/users/' + this.LoginService.userId,
       {
-        username: $name
+        username: $name,
+        tipo: 'otro'
       },
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
@@ -49,7 +79,8 @@ export class UserService {
     return new Promise(resolve => {
       this.http.put(this.apiUrl + '/users/' + this.LoginService.userId,
       {
-        name: $name
+        name: $name,
+        tipo: 'otro'
       },
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
@@ -67,7 +98,8 @@ export class UserService {
     return new Promise(resolve => {
       this.http.put(this.apiUrl + '/users/' + this.LoginService.userId,
       {
-        surname: $name
+        surname: $name,
+        tipo: 'otro'
       },
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
@@ -85,7 +117,8 @@ export class UserService {
     return new Promise(resolve => {
       this.http.put(this.apiUrl + '/users/' + this.LoginService.userId,
       {
-        password: $name
+        password: $name,
+        tipo: 'pass'
       },
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),

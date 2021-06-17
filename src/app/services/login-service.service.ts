@@ -100,4 +100,17 @@ export class LoginServiceService {
       });
       });
   }
+
+  resetPass($email){
+    return new Promise(resolve => {
+      this.http.post(this.apiUrl + '/resetPass',
+      {
+        email: $email
+      })
+      .subscribe(data => {
+      resolve(data);
+      }, err => {
+      });
+      });
+  }
 }

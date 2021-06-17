@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Administrar recetas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">logout</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<app-menu></app-menu>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let recipe of recipes" style="margin-top:10px">
+    <ion-img (click)="viewRecipe(recipe.id)" src="../assets/images/{{recipe.image}}.jpg"></ion-img>
+    <ion-card-header (click)="viewRecipe(recipe.id)" style="margin-top:5px">
+      <ion-card-title>{{ recipe.name }}</ion-card-title>
+      <ion-card-subtitle style="margin-top:5px">{{ recipe.description }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

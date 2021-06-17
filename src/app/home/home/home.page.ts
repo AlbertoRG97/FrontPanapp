@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { LoginServiceService } from '../../services/login-service.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class HomePage implements OnInit {
   tipo ="password"
   
   constructor(private navCtrl: NavController,
-    private loginService: LoginServiceService) { } 
+    private loginService: LoginServiceService,
+    private AlertController:AlertController) { } 
 
   ngOnInit() {
   }
@@ -25,8 +26,7 @@ export class HomePage implements OnInit {
 
   login(){
     this.loginService.login(this.data).then(data => {
-      console.log(this.loginService.token);
-      this.navCtrl.navigateRoot('/tabs');
+      this.navegar(data)
     });
   }
 
@@ -37,4 +37,40 @@ export class HomePage implements OnInit {
     this.tipo = 'password'
   }
 
+  navegar($data){
+    if($data.success.admin === 1){
+      this.navCtrl.navigateRoot('admin-articles')
+    }
+    else{
+      this.navCtrl.navigateRoot('tabs')
+    }
+  }
+
+  async resetPass() {
+    const alert = await this.AlertController.create({
+      header: 'Introduce tu email',
+      inputs: [
+        {
+          name: 'username',
+          type: 'text'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+        },
+        {
+          text: 'Actualizar',
+          handler: (alertData) => {
+            this.loginService.resetPass(alertData.username)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../services/login-service.service';
 import { NavController, AlertController, ActionSheetController } from '@ionic/angular';
 import { RecipeService } from '../services/recipe.service';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { CommentsService } from '../services/comments.service';
 
 @Component({
@@ -27,7 +26,6 @@ export class Tab1Page {
     private RecipeService:RecipeService,
     private alertController:AlertController,
     private actionSheetController: ActionSheetController,
-    private SocialSharing:SocialSharing,
     private CommentsService:CommentsService) 
     {
       this.comprobarRecetas()
@@ -113,38 +111,6 @@ export class Tab1Page {
 
   filtrarComments(data: any, $id){
     return data.Comments.filter((element) => element.recipe_id == $id).length
-  }
-
-  async share() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Compartir',
-      buttons: [ {
-        text: 'Share',
-        icon: 'logo-whatsapp',
-        handler: () => {
-          this.shareWhatsapp()
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    await actionSheet.present();
-
-    const { role } = await actionSheet.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
-  }
-
-  shareWhatsapp(){
-    this.SocialSharing.shareViaTwitter('Hola mensaje desde ionic').then(() => {
-
-    }).catch(e => {
-      console.log(e)
-    })
   }
 
   doRefresh(event) {

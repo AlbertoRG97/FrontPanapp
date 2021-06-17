@@ -69,6 +69,30 @@ const routes: Routes = [
   {
     path: 'edit-image/:id',
     loadChildren: () => import('./views/edit-image/edit-image.module').then( m => m.EditImagePageModule)
+  },
+  {
+    path: 'admin-articles',
+    loadChildren: () => import('./adminPages/admin-articles/admin-articles.module').then( m => m.AdminArticlesPageModule)
+  },
+  {
+    path: 'admin-article/:id',
+    loadChildren: () => import('./adminPages/admin-article/admin-article.module').then( m => m.AdminArticlePageModule)
+  },
+  {
+    path: 'admin-create-article',
+    loadChildren: () => import('./adminPages/admin-create-article/admin-create-article.module').then( m => m.AdminCreateArticlePageModule)
+  },
+  {
+    path: 'admin-users',
+    loadChildren: () => import('./adminPages/admin-users/admin-users.module').then( m => m.AdminUsersPageModule)
+  },
+  {
+    path: 'admin-recipes',
+    loadChildren: () => import('./adminPages/admin-recipes/admin-recipes.module').then( m => m.AdminRecipesPageModule)
+  },
+  {
+    path: 'admin-recipe/:id',
+    loadChildren: () => import('./adminPages/admin-recipe/admin-recipe.module').then( m => m.AdminRecipePageModule)
   }
 ];
 @NgModule({

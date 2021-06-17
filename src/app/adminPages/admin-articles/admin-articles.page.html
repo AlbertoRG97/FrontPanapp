@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Administrar articulos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">logout</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<app-menu></app-menu>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-item>
+    <ion-select interface="popover" style="font-size:17px" (ionChange)="onChange($event)" placeholder="Filtrar por categoría ...">
+      <ion-select-option class="options" value="Sf">Sin filtro</ion-select-option>
+      <ion-select-option class="options" value="Horneado">Horneado</ion-select-option>
+      <ion-select-option class="options" value="Hidratación">Hidratación</ion-select-option>
+      <ion-select-option class="options" value="Centeno">Centeno</ion-select-option>
+      <ion-select-option class="options" value="Espelta">Espelta</ion-select-option>
+      <ion-select-option class="options" value="Kamut">Kamut</ion-select-option>
+      <ion-select-option class="options" value="Fermentación">Fermentación</ion-select-option>
+      <ion-select-option class="options" value="Amasado">Amasado</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-card *ngFor="let article of articles" (click)="cardClicked(article.id)">
+  <ion-card-header>
+  <ion-item>
+    <ion-icon slot="start" name="reader-outline"></ion-icon>
+    <ion-card-title>{{ article.name }}</ion-card-title> 
+  </ion-item>
+  </ion-card-header>
+    <ion-item>
+      <ion-label>{{ article.text }}</ion-label>
+      <ion-icon *ngIf="article.deleted == 1" slot="end" style="font-size:20px;margin-right:20px" name="trash-outline"></ion-icon>
+    </ion-item>
+  </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="light" (click)="addButton()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>

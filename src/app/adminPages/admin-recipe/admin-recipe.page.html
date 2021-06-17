@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin-recipes"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Administrar Receta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+    <ion-card style="margin-top:10px">
+      <ion-img src="../../assets/images/{{recipe.image}}.jpg"></ion-img>
+      <ion-card-header style="margin-top:5px">
+      <ion-item>
+        <ion-card-title >{{ recipe.name }}</ion-card-title>
+        <ion-icon (click)="deleteRecipe()" size="large" name="trash-outline"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-card-subtitle style="margin-top:5px">{{ recipe.description }}</ion-card-subtitle>
+      </ion-item>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-card-title style="margin-top:15px;border-bottom:solid;margin-bottom:10px">Harinas</ion-card-title>
+        <ion-label slot="start" *ngIf="flours.harina_blanca_trigo != 0">Harina blanca de trigo: {{ flours.harina_blanca_trigo }}<br></ion-label>
+        <ion-label slot="start" *ngIf="flours.harina_integral_trigo != 0">Harina integral de trigo: {{ flours.harina_integral_trigo }}<br></ion-label>
+        <ion-label slot="start" *ngIf="flours.harina_blanca_espelta != 0">Harina blanca de espelta: {{ flours.harina_blanca_espelta }}<br></ion-label>
+        <ion-label slot="start" *ngIf="flours.harina_integral_espelta != 0">Harina integral de espelta: {{ flours.harina_integral_espelta }}<br></ion-label>
+        <ion-label slot="start" *ngIf="flours.harina_blanca_centeno != 0">Harina blanca de centeno: {{ flours.harina_blanca_centeno }}<br></ion-label>
+        <ion-label slot="start" *ngIf="flours.harina_integral_centeno != 0">Harina integral de centeno: {{ flours.harina_integral_centeno }}<br></ion-label>
+        <ion-label slot="start" *ngIf="flours.semola_trigo != 0">Semola de trigo: {{ flours.semola_trigo }}<br></ion-label>
+
+        <ion-card-title style="margin-top:15px;border-bottom:solid;margin-bottom:10px">Hidratación</ion-card-title>
+        <ion-label *ngIf="hydrations.agua != 0">Agua: {{ hydrations.agua }}<br></ion-label>
+        <ion-label *ngIf="hydrations.leche != 0">Leche: {{ hydrations.leche }}<br></ion-label>
+
+        <ion-card-title style="margin-top:15px;border-bottom:solid;margin-bottom:10px">Otros ingredientes</ion-card-title>
+        <ion-label *ngIf="others.salt != 0">Sal: {{ others.salt }}<br></ion-label>
+        <ion-label *ngIf="others.masa_madre != 0">Masa madre: {{ others.masa_madre }}<br></ion-label>
+        <ion-label *ngIf="others.levadura_seca != 0">Levadura seca: {{ others.levadura_seca }}<br></ion-label>
+        <ion-label *ngIf="others.levadura_fresca != 0">Levadura fresca: {{ others.levadura_fresca }}<br></ion-label>
+        <ion-label *ngIf="others.manteca != 0">Manteca: {{ others.manteca }}<br></ion-label>
+        <ion-label *ngIf="others.aceite_oliva != 0">Aceite de oliva: {{ others.aceite_oliva }}<br></ion-label>
+        <ion-label *ngIf="others.grasa != 0">Grasa: {{ others.grasa }}<br></ion-label>
+        <ion-label *ngIf="others.semillas != 0">Semillas: {{ others.semillas }}<br></ion-label>
+        <ion-label *ngIf="others.pure_patata != 0">Pure de patata: {{ others.pure_patata }}<br></ion-label>
+        <ion-label *ngIf="others.huevo != 0">Huevo: {{ others.huevo }}<br></ion-label>
+
+        <ion-card-title style="margin-top:15px; border-bottom:solid;margin-bottom:10px">Pasos</ion-card-title>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_1 != null " disabled="true">Paso 1: {{ steps.step_1 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_2 != null " disabled="true">Paso 2: {{ steps.step_2 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_3 != null " disabled="true">Paso 3: {{ steps.step_3 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_4 != null " disabled="true">Paso 4: {{ steps.step_4 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_5 != null " disabled="true">Paso 5: {{ steps.step_5 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_6 != null " disabled="true">Paso 6: {{ steps.step_6 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_7 != null " disabled="true">Paso 7: {{ steps.step_7 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_8 != null " disabled="true">Paso 8: {{ steps.step_8 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_9 != null " disabled="true">Paso 9: {{ steps.step_9 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_10 != null " disabled="true">Paso 10: {{ steps.step_10 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_11 != null " disabled="true">Paso 11: {{ steps.step_11 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_12 != null " disabled="true">Paso 12: {{ steps.step_12 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_13 != null " disabled="true">Paso 13: {{ steps.step_13 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_14 != null " disabled="true">Paso 14: {{ steps.step_14 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_15 != null " disabled="true">Paso 15: {{ steps.step_15 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_16 != null " disabled="true">Paso 16: {{ steps.step_16 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_17 != null " disabled="true">Paso 17: {{ steps.step_17 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_18 != null " disabled="true">Paso 18: {{ steps.step_18 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_19 != null " disabled="true">Paso 19: {{ steps.step_19 }}<br><br></ion-label>
+        <ion-label class="ion-text-wrap" *ngIf="steps.step_20 != null " disabled="true">Paso 20: {{ steps.step_20 }}<br><br></ion-label>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="margin-top:15px; border-bottom:solid;margin-bottom:10px">Seccion de comentarios</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let comment of comments">
+            <ion-grid>
+              <ion-row>
+                <ion-label style="font-weight:bold ;">{{ comment.username }}</ion-label>
+              </ion-row>
+              <ion-row style="margin-top:5px;border-style: solid;border:1px">
+                <ion-label class="ion-text-wrap" >{{ comment.comment }}</ion-label>
+              </ion-row>
+              <ion-row style="margin-top:5px;width: 100%">
+                <ion-col>
+                  <ion-icon (click)="deleteComment(comment.id)" name="trash-outline"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

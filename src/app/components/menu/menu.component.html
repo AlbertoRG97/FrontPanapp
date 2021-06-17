@@ -1,0 +1,23 @@
+<ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu de navegacion</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-button (click)="goArticles()"><ion-icon name="newspaper"></ion-icon></ion-button>
+        <ion-label style="margin-left:10px">Artículos</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-button (click)="goUsers()"><ion-icon name="person"></ion-icon></ion-button>
+        <ion-label style="margin-left:10px">Usuarios</ion-label>
+      </ion-item>      
+      <ion-item >
+        <ion-button (click)="goRecipes()"><ion-icon name="book"></ion-icon></ion-button>
+        <ion-label style="margin-left:10px">Recetas</ion-label>
+      </ion-item>    
+    </ion-list>
+  </ion-content>
+</ion-menu>

@@ -2,6 +2,7 @@
 
 <ion-content>
     <ion-item>
+        <ion-icon slot="start" (click)="logout()" name="log-out-outline"></ion-icon>
         <ion-icon slot="end" style="display:flex" (click)="displayInfo()" name="information-circle-outline"></ion-icon>
     </ion-item>
     <ion-item>
@@ -38,6 +39,11 @@
                     <ion-thumbnail>
                         <img src="../assets/icon/{{userData.country}}.png">
                     </ion-thumbnail>
+                </ion-col>
+            </ion-row>
+            <ion-row style="margin-top:20px">
+                <ion-col class="centrar">
+                    <ion-button (click)="changePass()" expand="block">Cambiar contraseña</ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>

@@ -445,4 +445,18 @@ export class RecipeService {
     })
   }
 
+  deleteRecipe($id){
+    return new Promise(resolve => {
+      this.http.delete(this.apiUrl + '/recipe/'+$id,
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.LoginService.token),
+      })
+      .subscribe(data => {
+        resolve(data)
+      }, err => {
+        console.log(err)
+      })
+    })
+  }
+
 }
